@@ -1,0 +1,16 @@
+#startWindow {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 25vh;
+}
+
+#startWindow input{
+  font-size: medium;
+  border: 0;
+}
+
+#startWindow input:focus{
+  outline: none;
+}
