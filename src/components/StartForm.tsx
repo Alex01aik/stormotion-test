@@ -1,27 +1,33 @@
 import '../styles/startForm.css'
-import React from 'react'
+import React, { useState } from 'react'
 
-const StartForm = (props: any) => {
+const StartForm: React.FC<any> = (props) => {
 
   const values = props.values
   const setValues = props.setValues
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    (e.target.type === 'checkbox')
-      ? setValues({
+  const numberHandler: React.ChangeEventHandler<HTMLInputElement> = 
+    (e): void => {
+      setValues({
+          ...values,
+          [e.target.id]: parseInt(e.target.value)})
+          setErrorMessage('')    
+    }
+  
+  const checkboxHanler: React.ChangeEventHandler<HTMLInputElement> = 
+    (e): void => {
+      setValues({
         ...values,
         [e.target.id]: !values[e.target.id]})
-      : setValues({
-        ...values,
-        [e.target.id]: parseInt(e.target.value)})    
-  }
+    }
 
   const submit = (event: React.FormEvent): void => {
     (values.all % 2 === 1)
       ? setValues({
         ...values,
         isGameRun: true})
-      : alert('The number of all matches must be even!')
+      : setErrorMessage('The number of all matches must be even!')
 
     event.preventDefault()
   }
@@ -29,7 +35,7 @@ const StartForm = (props: any) => {
   return (
     <form
       id="startWindow"
-      onSubmit={(e) => submit(e)}>
+      onSubmit={submit}>
       <label
         htmlFor="all">
           Enter the numder of matches:
@@ -39,7 +45,11 @@ const StartForm = (props: any) => {
         id="all"
         value={values.all}
         min={7}
-        onChange={(e) => changeHandler(e)}/>
+        onChange={numberHandler}/>
+        {(errorMessage)
+          ?<p className="errorMessage">{errorMessage}</p>
+          :<></>
+        }
       <label
         htmlFor="activeMatches">
         Enter the numder of touched matches:
@@ -49,7 +59,7 @@ const StartForm = (props: any) => {
         id="activeMatches"
         value={values.activeMatches}
         min={2}
-        onChange={(e) => changeHandler(e)}/>
+        onChange={numberHandler}/>
       <label
         htmlFor="computerFirst">
         Computer goes first:
@@ -58,7 +68,7 @@ const StartForm = (props: any) => {
         type="checkbox"
         id="computerMovie"
         checked={values.computerMovie}
-        onChange={(e) => changeHandler(e)} />
+        onChange={checkboxHanler} />
       <button
         className="startButton"
         type="submit">

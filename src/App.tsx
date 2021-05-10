@@ -6,16 +6,14 @@ import GameValues from './interfaces'
 
 const App: React.FC = () =>  {
 
-  const[ values, setValues] = useState<GameValues>({
+  const[ values, setValues ] = useState<GameValues>({
     isGameRun: false,
     all: 25,
     activeMatches: 3,
-    computerMovie: false,
-    player: 0,
-    rival: 0
+    computerMovie: false
   })
 
-
+  
   return (
     <>
       <Header />
@@ -25,8 +23,7 @@ const App: React.FC = () =>  {
             setValues={setValues} />
         : <GameArea
             values={values}
-            setValues={setValues} />}
-      
+            setValues={setValues} />} 
     </>
   )
 }

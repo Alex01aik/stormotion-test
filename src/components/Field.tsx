@@ -1,6 +1,7 @@
+import React from 'react'
 import Match from './Match'
 
-const Field = ({quantity, activeMatches, playerMove}: any) => {
+const Field: React.FC<any> = ({quantity, activeMatches, playerMove}) => {
 
   return (
     <div id="field" className="sector">

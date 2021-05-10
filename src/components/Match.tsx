@@ -1,6 +1,7 @@
+import React from 'react'
 import '../styles/match.css'
 
-const Match = ({num, activeMatches, playerMove}: any) => {
+const Match: React.FC<any> = ({num, activeMatches, playerMove}: any) => {
 
   return (
     <div

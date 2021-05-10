@@ -3,8 +3,9 @@ interface GameValues {
   all: number,
   activeMatches: number,
   computerMovie: boolean,
-  player: number,
-  rival: number
+  field?: number,
+  player?: number,
+  rival?: number
 }
 
 export default GameValues

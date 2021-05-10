@@ -1,4 +1,6 @@
-const WinWindow = ({values, setValues}: any) => {
+import React from 'react'
+
+const WinWindow: React.FC<any> = ({values, setValues}) => {
 
   return (
     <div id="winWindow">
